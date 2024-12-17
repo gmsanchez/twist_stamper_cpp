@@ -9,13 +9,13 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
 
-    node_robot_state_publisher = Node(
+    node_twist_stamper_cpp = Node(
         package = 'twist_stamper_cpp',
         executable = 'twist_stamper_cpp',
         output = 'screen',
         parameters=[{'frame_id': 'base_link'}, {'use_sim_time': use_sim_time}],
-        remappings=[('/cmd_vel_out','/hibachi_base_controller/cmd_vel'),
-                    ('/cmd_vel_in', '/hibachi_base_controller/cmd_vel_unstamped')]
+        remappings=[('/cmd_vel_out','/cmd_vel_nav'),
+                    ('/cmd_vel_in', '/cmd_vel')]
     )
 
     return LaunchDescription([
@@ -23,5 +23,5 @@ def generate_launch_description():
             'use_sim_time',
             default_value='False',
             description='Use simulation (Gazebo) clock if true'),
-        node_robot_state_publisher,
+        node_twist_stamper_cpp,
     ])

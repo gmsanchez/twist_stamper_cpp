@@ -14,7 +14,7 @@ def generate_launch_description():
         executable = 'twist_stamper_cpp',
         output = 'screen',
         parameters=[{'frame_id': 'base_link'}, {'use_sim_time': use_sim_time}],
-        remappings=[('/cmd_vel_out','/cmd_vel_nav'),
+        remappings=[('/cmd_vel_out','/cmd_vel_twist_stamper'),
                     ('/cmd_vel_in', '/cmd_vel')]
     )
 
